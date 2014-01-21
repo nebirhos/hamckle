@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'hamckle_frester'
+# require 'pry'                   # fixme
+
+HamckleFrester::Cli.start(ARGV)

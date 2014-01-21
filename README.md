@@ -1,24 +1,19 @@
-# HamckleFrester
+# Hamckle Frester
 
 TODO: Write a gem description
 
+
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'hamckle_frester'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install hamckle_frester
 
+
 ## Usage
 
-TODO: Write usage instructions here
+Push time logs to freckle:
+
+    $ hamckle push --from yyyy-mm-dd
+
 
 ## Contributing
 

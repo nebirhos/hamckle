@@ -1,5 +1,9 @@
-require "hamckle_frester/version"
+require "sequel"
+require "thor"
+require "letsfreckle"
 
-module HamckleFrester
-  # Your code goes here...
-end
+require "hamckle_frester/version"
+require "hamckle_frester/settings"
+require "hamckle_frester/db"
+require "hamckle_frester/cli"
+require "hamckle_frester/freckle"
