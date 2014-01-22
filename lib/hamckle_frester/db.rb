@@ -1,7 +1,7 @@
 module HamckleFrester
   module DB
     def self.connect(path)
-      connection = Sequel.connect("sqlite://#{path}")
+      connection = Sequel.connect("sqlite://#{File.expand_path(path)}")
       # Sequel requires a db connection to define models
       require "hamckle_frester/models/activity"
       require "hamckle_frester/models/category"

@@ -23,8 +23,8 @@ module HamckleFrester
 
     def self.template
       {
-       hamster_db: "/home/istvan/Downloads/hamster-copy.db",
-       mark_synced_tag: 'cantiere',
+       hamster_db: "~/.local/share/hamster-applet/hamster.db",
+       synced_tag: 'freckle',
        freckle: {
                  account_host: "CHANGEME",
                  username: "CHANGEME",

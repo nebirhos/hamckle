@@ -11,7 +11,7 @@ module HamckleFrester
       facts = options[:from] ? Fact.after(options[:from]) : Fact.all
       say "Found #{facts.count} time entries"
       facts.each do |fact|
-        if !fact.tagged_with?(settings.mark_synced_tag) && yes?("#{fact} Push this entry?", [:bold, :cyan])
+        if !fact.tagged_with?(settings.synced_tag) && yes?("#{fact} Push this entry?", [:bold, :cyan])
           unless project_id = settings.projects_mapping[fact.activity.category.name]
             say "Available Freckle projects:", :cyan
             projects = freckle.projects.map do |p|
@@ -25,7 +25,7 @@ module HamckleFrester
           end
 
           if freckle.create(project_id, fact.start_time.to_date, "#{fact.duration}", fact.description)
-            fact.add_tag(Tag.find_or_create(name: settings.mark_synced_tag))
+            fact.add_tag(Tag.find_or_create(name: settings.synced_tag))
             say "#{fact} ADDED", :green
           else
             say "ERROR", :red
