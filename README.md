@@ -1,6 +1,6 @@
 # Hamckle Frester
 
-TODO: Write a gem description
+Import your Project Hamster time logs into LetsFreckle.com, using a confortable command-line UI.
 
 
 ## Installation
@@ -10,9 +10,19 @@ TODO: Write a gem description
 
 ## Usage
 
+First you need to configure Hamckle with:
+
+    $ hamckle init
+
+Doing this will ask you for your Freckle API access (host, username and token).
+Hamckle keeps its configuration in a yaml file under ~/.hamckle/settings.yml (you can change this).
+
 Push time logs to freckle:
 
     $ hamckle push --from yyyy-mm-dd
+
+This command tells Hamckle to search for all Hamster entries from specified date, ask your permit to push, and then mark the pushed actions with a tag 'freckle' in Hamster.
+Every Hamster category corresponds to a Freckle project. Associations between Hamster categories and Freckle projects are made interactively, and stored in the configuration file.
 
 
 ## Contributing
