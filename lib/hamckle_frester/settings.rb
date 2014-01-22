@@ -1,5 +1,3 @@
-require 'fileutils'
-
 module HamckleFrester
   class Settings
     def initialize(path)
@@ -25,11 +23,7 @@ module HamckleFrester
       {
        hamster_db: "~/.local/share/hamster-applet/hamster.db",
        synced_tag: 'freckle',
-       freckle: {
-                 account_host: "CHANGEME",
-                 username: "CHANGEME",
-                 token: "CHANGEME"
-                },
+       freckle: {},
        projects_mapping: {},
       }
     end
@@ -37,10 +31,7 @@ module HamckleFrester
     def load_yaml
       YAML::load_file(@path)
     rescue Errno::ENOENT
-      FileUtils.mkdir_p(File.dirname(@path))
-      @data = Hashie::Mash.new(Settings.template)
-      save!
-      @data
+      Settings.template
     end
   end
 end

@@ -1,3 +1,5 @@
+require 'fileutils'
+
 module HamckleFrester
   class Cli < Thor
     desc 'push', 'Sync Hamster entries with LetsFreckle.com'
@@ -37,5 +39,23 @@ module HamckleFrester
       end
     end
 
+    desc 'init', 'Create a hamckle configuration file'
+    method_option :account_host, desc: "Freckle API host"
+    method_option :username, desc: "Freckle username"
+    method_option :token, desc: "Freckle access token"
+    method_option :config, aliases: "-c", desc: "Configuration file path", default: "~/.hamckle/settings.yml"
+    def init
+      config_path = File.expand_path(options[:config])
+      base_path = File.dirname(config_path)
+
+      FileUtils.mkdir_p(base_path) if !File.directory?(base_path)
+      if !File.exists?(config_path) || file_collision(config_path)
+        settings = HamckleFrester::Settings.new(options[:config])
+        settings.freckle.account_host = options[:account_host] || ask("Freckle API host:")
+        settings.freckle.username = options[:username] || ask("Freckle username:")
+        settings.freckle.token = options[:token] || ask("Freckle access token:")
+        settings.save!
+      end
+    end
   end
 end
