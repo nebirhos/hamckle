@@ -21,7 +21,7 @@ Push time logs to freckle:
 
     $ hamckle push --from yyyy-mm-dd
 
-This command tells Hamckle to search for all Hamster entries from specified date, ask your permit to push, and then mark the pushed actions with a tag 'freckle' in Hamster.
+This command tells Hamckle to search for all Hamster entries from specified date, asks your permit to push, and then marks the pushed entries with a tag 'freckle' in Hamster.
 Every Hamster category corresponds to a Freckle project. Associations between Hamster categories and Freckle projects are made interactively, and stored in the configuration file.
 
 
