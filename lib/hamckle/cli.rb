@@ -52,7 +52,7 @@ module Hamckle
       if !File.exists?(config_path) || file_collision(config_path)
         settings = Hamckle::Settings.new(options[:config])
         [:account_host, :username, :token].each do |s|
-            settings.send("#{s}=", options[s] || ask("Freckle #{s.to_s.gsub('_', ' ').titleize}:"))
+            settings.freckle.send("#{s}=", options[s] || ask("Freckle #{s.to_s.gsub('_', ' ').titleize}:"))
         end
         settings.save!
         say "Hamckle configuration file created! Happy logging :)", :green
