@@ -1,15 +1,15 @@
 require 'fileutils'
 
-module HamckleFrester
+module Hamckle
   class Cli < Thor
     class_option :config, aliases: "-c", desc: "Configuration file path", default: "~/.hamckle/settings.yml"
 
     desc 'push', 'Sync Hamster entries with LetsFreckle.com'
     method_option :from, aliases: "-f", banner: "DATE", desc: "Process only entries from specified DATE (yyyy-mm-dd)"
     def push
-      settings = HamckleFrester::Settings.new(options[:config])
-      HamckleFrester::DB.connect(settings.hamster_db)
-      freckle = HamckleFrester::Freckle.new(settings.freckle)
+      settings = Hamckle::Settings.new(options[:config])
+      Hamckle::DB.connect(settings.hamster_db)
+      freckle = Hamckle::Freckle.new(settings.freckle)
 
       facts = options[:from] ? Fact.after(options[:from]) : Fact.all
       say "Found #{facts.count} time entries"
@@ -50,7 +50,7 @@ module HamckleFrester
 
       FileUtils.mkdir_p(base_path) if !File.directory?(base_path)
       if !File.exists?(config_path) || file_collision(config_path)
-        settings = HamckleFrester::Settings.new(options[:config])
+        settings = Hamckle::Settings.new(options[:config])
         settings.freckle.account_host = options[:account_host] || ask("Freckle API host:")
         settings.freckle.username = options[:username] || ask("Freckle username:")
         settings.freckle.token = options[:token] || ask("Freckle access token:")

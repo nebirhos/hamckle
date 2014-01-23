@@ -5,7 +5,7 @@ SimpleCov.start
 Coveralls.wear!
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'hamckle_frester'
+require 'hamckle'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|

@@ -1,4 +1,4 @@
-module HamckleFrester
+module Hamckle
   class Settings
     def initialize(path)
       @path = File.expand_path(path)

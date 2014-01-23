@@ -1,14 +1,14 @@
-# Hamckle Frester
+# Hamckle
 
 Import your Project Hamster time logs into LetsFreckle.com, using a confortable command-line UI.
 
-[![Build Status](https://travis-ci.org/nebirhos/hamckle_frester.png?branch=master)](https://travis-ci.org/nebirhos/hamckle_frester)
-[![Coverage Status](https://coveralls.io/repos/nebirhos/hamckle_frester/badge.png)](https://coveralls.io/r/nebirhos/hamckle_frester)
+[![Build Status](https://travis-ci.org/nebirhos/hamckle.png?branch=master)](https://travis-ci.org/nebirhos/hamckle)
+[![Coverage Status](https://coveralls.io/repos/nebirhos/hamckle/badge.png)](https://coveralls.io/r/nebirhos/hamckle)
 
 
 ## Installation
 
-    $ gem install hamckle_frester
+    $ gem install hamckle
 
 
 ## Usage
@@ -30,7 +30,7 @@ Every Hamster category corresponds to a Freckle project. Associations between Ha
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/hamckle_frester/fork )
+1. Fork it ( http://github.com/<my-github-username>/hamckle/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

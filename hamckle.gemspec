@@ -1,15 +1,15 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'hamckle_frester/version'
+require 'hamckle/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "hamckle_frester"
-  spec.version       = HamckleFrester::VERSION
+  spec.name          = "hamckle"
+  spec.version       = Hamckle::VERSION
   spec.authors       = ["Francesco Disperati"]
   spec.email         = ["me@nebirhos.com"]
   spec.summary       = %q{Import your Project Hamster time logs into LetsFreckle.com}
-  spec.homepage      = "https://github.com/nebirhos/hamckle_frester"
+  spec.homepage      = "https://github.com/nebirhos/hamckle"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

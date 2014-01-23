@@ -1,4 +1,4 @@
-module HamckleFrester
+module Hamckle
   class Fact < Sequel::Model
     many_to_one :activity
     many_to_many :tags, join_table: 'fact_tags'

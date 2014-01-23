@@ -1,4 +1,4 @@
-module HamckleFrester
+module Hamckle
   class Freckle
     def initialize(options)
       LetsFreckle.configure do

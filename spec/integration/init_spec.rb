@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'fileutils'
 
-describe HamckleFrester::Cli do
+describe Hamckle::Cli do
   config = "./tmp/test.yml"
 
   describe "exec 'hamckle init -c #{config}'" do

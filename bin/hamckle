@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'hamckle_frester'
+require 'hamckle'
 
-HamckleFrester::Cli.start(ARGV)
+Hamckle::Cli.start(ARGV)
