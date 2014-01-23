@@ -55,6 +55,9 @@ module HamckleFrester
         settings.freckle.username = options[:username] || ask("Freckle username:")
         settings.freckle.token = options[:token] || ask("Freckle access token:")
         settings.save!
+        say "Hamckle configuration file created! Happy logging :)", :green
+      else
+        say "Hamckle configuration file init skipped", :yellow
       end
     end
   end
