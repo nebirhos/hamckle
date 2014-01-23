@@ -1,6 +1,15 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in hamckle_frester.gemspec
-gemspec
 
-gem "pry-plus"
+gem "rake"
+
+group :development do
+  gem "pry-plus"
+end
+
+group :test do
+  gem "rspec"
+  gem "simplecov", require: false
+end
+
+gemspec
