@@ -2,9 +2,10 @@ require 'fileutils'
 
 module HamckleFrester
   class Cli < Thor
+    class_option :config, aliases: "-c", desc: "Configuration file path", default: "~/.hamckle/settings.yml"
+
     desc 'push', 'Sync Hamster entries with LetsFreckle.com'
     method_option :from, aliases: "-f", banner: "DATE", desc: "Process only entries from specified DATE (yyyy-mm-dd)"
-    method_option :config, aliases: "-c", desc: "Configuration file path", default: "~/.hamckle/settings.yml"
     def push
       settings = HamckleFrester::Settings.new(options[:config])
       HamckleFrester::DB.connect(settings.hamster_db)
@@ -43,7 +44,6 @@ module HamckleFrester
     method_option :account_host, desc: "Freckle API host"
     method_option :username, desc: "Freckle username"
     method_option :token, desc: "Freckle access token"
-    method_option :config, aliases: "-c", desc: "Configuration file path", default: "~/.hamckle/settings.yml"
     def init
       config_path = File.expand_path(options[:config])
       base_path = File.dirname(config_path)
