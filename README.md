@@ -2,6 +2,8 @@
 
 Import your Project Hamster time logs into LetsFreckle.com, using a confortable command-line UI.
 
+[![Build Status](https://travis-ci.org/nebirhos/hamckle_frester.png?branch=master)](https://travis-ci.org/nebirhos/hamckle_frester)
+
 
 ## Installation
 
