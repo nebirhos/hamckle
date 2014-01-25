@@ -51,9 +51,9 @@ module Hamckle
       FileUtils.mkdir_p(base_path) if !File.directory?(base_path)
       if !File.exists?(config_path) || file_collision(config_path)
         settings = Hamckle::Settings.new(options[:config])
-        settings.freckle.account_host = options[:account_host] || ask("Freckle API host:")
-        settings.freckle.username = options[:username] || ask("Freckle username:")
-        settings.freckle.token = options[:token] || ask("Freckle access token:")
+        [:account_host, :username, :token].each do |s|
+          settings.freckle[s] = options[s] || ask("Freckle #{s.to_s.gsub('_', ' ').titleize}:")
+        end
         settings.save!
         say "Hamckle configuration file created! Happy logging :)", :green
       else

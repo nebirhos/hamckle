@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'fileutils'
+require 'yaml'
 
 describe Hamckle::Cli do
   config = "./tmp/test.yml"
@@ -11,13 +12,13 @@ describe Hamckle::Cli do
       end
     end
 
-    let(:host) { "myhost" }
-    let(:user) { "tito@traves.com" }
+    let(:account_host) { "myhost" }
+    let(:username) { "tito@traves.com" }
     let(:token) { "abc123" }
 
     before do
       FileUtils.rm_rf(File.dirname(config))
-      @output = execute_with!(host, user, token)
+      @output = execute_with!(account_host, username, token)
     end
 
     context "configuration file does not exist" do
@@ -25,16 +26,11 @@ describe Hamckle::Cli do
         expect(File.exists?(config)).to be_true
       end
 
-      it "sets given hostname" do
-        expect(File.read(config)).to match("account_host: #{host}")
-      end
-
-      it "sets given username" do
-        expect(File.read(config)).to match("username: #{user}")
-      end
-
-      it "sets given token" do
-        expect(File.read(config)).to match("token: #{token}")
+      %w(account_host username token).each do |field|
+        it "sets given #{field}" do
+          settings = YAML.load_file(config)
+          expect(settings['freckle'][field]).to eq eval(field)
+        end
       end
 
       it "says the file was successfully created" do
@@ -43,7 +39,9 @@ describe Hamckle::Cli do
     end
 
     context "configuration file does exist" do
-      let(:new_host) { "adifferenthost" }
+      let(:new_account_host) { "adifferenthost" }
+      let(:new_username) { "thomas@turbato.it" }
+      let(:new_token) { "xyz789" }
 
       it "asks permission to overwrite the file" do
         new_output = execute_with!('n')
@@ -51,19 +49,24 @@ describe Hamckle::Cli do
       end
 
       context "if I answer NO" do
-        it "does NOT overwrite the file" do
-          execute_with!('n', new_host)
-          expect(File.read(config)).to match("account_host: #{host}")
+        %w(account_host username token).each do |field|
+          it "does NOT overwrite #{field}" do
+            execute_with!('n', new_account_host, new_username, new_token)
+            settings = YAML.load_file(config)
+            expect(settings['freckle'][field]).to eq eval(field)
+          end
         end
       end
 
       context "if I answer YES" do
-        it "DOES overwrite the file" do
-          execute_with!('y', new_host)
-          expect(File.read(config)).to match("account_host: #{new_host}")
+        %w(account_host username token).each do |field|
+          it "DOES overwrite #{field}" do
+            execute_with!('y', new_account_host, new_username, new_token)
+            settings = YAML.load_file(config)
+            expect(settings['freckle'][field]).to eq eval("new_#{field}")
+          end
         end
       end
-
     end
   end
 
