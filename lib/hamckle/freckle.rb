@@ -9,7 +9,7 @@ module Hamckle
     end
 
     def projects
-      @projects ||= LetsFreckle::Project.all
+      @projects ||= LetsFreckle::Project.all.sort_by(&:name)
     end
 
     def create(project_id, date, duration, description)
