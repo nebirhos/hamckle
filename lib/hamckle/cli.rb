@@ -27,7 +27,7 @@ module Hamckle
               say "  * #{p.id} : #{p.name}", :cyan
               p.id.to_s
             end << "no"
-            project_id = ask(set_color( "Choose one:", :bold, :cyan), limited_to: projects)
+            project_id = ask(set_color("Choose one:", :bold, :cyan), limited_to: projects)
             next if project_id == 'no'
             settings.projects_mapping[fact.activity.category.name] = project_id
             settings.save!
