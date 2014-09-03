@@ -4,7 +4,8 @@ module Hamckle
   class Cli < Thor
     class_option :config, aliases: "-c", desc: "Configuration file path", default: "~/.hamckle/settings.yml"
 
-    desc 'push', 'Sync Hamster entries with LetsFreckle.com'
+    desc 'push', 'Push Hamster entries to LetsFreckle.com'
+    method_option :yes, aliases: "-y", type: :boolean, desc: "Don't ask for confirmation and skip unknown projects"
     method_option :from, aliases: "-f", banner: "DATE", desc: "Process only entries from specified DATE (yyyy-mm-dd)"
     def push
       settings = Hamckle::Settings.new(options[:config])
@@ -14,8 +15,13 @@ module Hamckle
       facts = options[:from] ? Fact.after(options[:from]) : Fact.all
       say "Found #{facts.count} time entries"
       facts.each do |fact|
-        if !fact.tagged_with?(settings.synced_tag) && yes?("#{fact} Push this entry?", [:bold, :cyan])
-          unless project_id = settings.projects_mapping[fact.activity.category.name]
+        project_id = settings.projects_mapping[fact.activity.category.name]
+
+        if !fact.tagged_with?(settings.synced_tag) &&
+            (project_id || !options[:yes]) &&
+            (options[:yes] || yes?("#{fact} Push this entry?", [:bold, :cyan]))
+
+          unless project_id
             say "Available Freckle projects:", :cyan
             projects = freckle.projects.map do |p|
               say "  * #{p.id} : #{p.name}", :cyan
