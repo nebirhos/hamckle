@@ -1,6 +1,7 @@
 require "sequel"
 require "thor"
 require "letsfreckle"
+require "yaml"
 
 require "hamckle/version"
 require "hamckle/settings"
