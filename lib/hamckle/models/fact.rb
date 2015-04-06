@@ -16,11 +16,11 @@ module Hamckle
     end
 
     def description
-      "#{tags_string}, !!#{activity.name}"
+      [activity.name, tags_string].compact.join(', ')
     end
 
     def tags_string
-      tags.map { |t| "##{t.name}" }.join(', ')
+      tags.map { |t| "##{t.name}" }.join(', ') if tags.any?
     end
 
     def to_s

@@ -13,7 +13,13 @@ module Hamckle
     end
 
     def create(project_id, date, duration, description)
-      response = LetsFreckle::Entry.create(project_id: project_id, date: date, minutes: duration, description: description)
+      response = LetsFreckle::Entry.create(
+                                           project_id: project_id,
+                                           date: date,
+                                           minutes: duration,
+                                           description: description,
+                                           allow_hashtags: true
+                                          )
       (response.status == 201)
     end
   end
